@@ -1,0 +1,45 @@
+fonction_inutile:
+message non affiché
+retour
+
+message ici un texte sans variable ni guillemets
+nombre nombre_entier -10
+appel fonction_simple
+
+message test
+appel messages_complexes
+
+; un commentaire de code
+
+affiche_nombre:
+nombre nombre_exemple 0
+incrementer nombre_exemple 5
+; encore un commentaire
+message "on affiche " $nombre_exemple " dans la console"
+appel fonction_recursive
+retour
+
+messages_complexes:
+message " "
+message "ce message doit avoir des espaces normaux"
+message "ce " "message" " " "doit" " avoir" " " "des " "espaces " "normaux aussi"
+message tandis     que    ce texte,  qui    affiche   $nombre_exemple   n'aura   "que"   " des espaces"    uniques
+message $nombre_exemple " peut etre affiché : " $nombre_exemple " et affiché de nouveau : " $nombre_entier " et voilà !"
+message "cependant, entre des doubles guillemets, $nombre_exemple s'affiche '$nombre_exemple'"
+message   "ici  on  "    "obtient "        " deux  " "espaces" "  " "entre  chaque  mot"
+retour
+
+fonction_recursive:
+; troisieme commentaire
+si $nombre_exemple < 10
+incrementer nombre_exemple 1
+incrementer nombre_entier -10
+message "le nombre est " $nombre_exemple
+appel fonction_recursive
+finsi
+retour
+
+fonction_simple:
+message bonjour
+appel affiche_nombre
+retour

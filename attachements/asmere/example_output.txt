@@ -1,0 +1,16 @@
+ici un texte sans variable ni guillemets
+bonjour
+on affiche 5 dans la console
+le nombre est 6
+le nombre est 7
+le nombre est 8
+le nombre est 9
+le nombre est 10
+test
+ 
+ce message doit avoir des espaces normaux
+ce message doit avoir des espaces normaux aussi
+tandis que ce texte, qui affiche 10 n'aura que des espaces uniques
+10 peut etre affiché : 10 et affiché de nouveau : -60 et voilà !
+cependant, entre des doubles guillemets, $nombre_exemple s'affiche '$nombre_exemple'
+ici  on  obtient  deux  espaces  entre  chaque  mot

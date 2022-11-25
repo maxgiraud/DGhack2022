@@ -1,0 +1,49 @@
+```php
+  7 function handle_task_creation()
+  8 {
+  9     if (isset($_POST) && !empty($_POST)) {
+ 10 
+ 11         $required_elements = array("author", "type", "assignee", "description");
+ 12 
+ 13         foreach ($required_elements as &$el) {
+ 14             if (!isset($_POST[$el]) || empty($_POST[$el]))
+ 15                 return '<div class="notification is-danger">Missing value ' . $el . '.</div>';
+ 16         }
+ 17                         
+ 18         $ticket_id = strval(random_int(0, 9999));
+ 19         $dt = new DateTime();
+ 20         $date = $dt->format('Y-m-d H:i:s');
+ 21                     
+ 22         $filename = "task_$ticket_id.txt";
+ 23         $fp = fopen(__DIR__ . "/tasks/" . $filename, "w+");
+ 24             
+ 25         $users = new User();
+ 26         $list_username = $users->get_all_username();
+ 27         $list_type = array("incident", "bug", "vulnerability", "request");
+ 28 
+ 29         if (!in_array($_POST["author"], $list_username) || !in_array($_POST["type"], $list_type) || !in_array($_POST["assignee"], $list_username))
+ 30             return '<div class="notification is-danger">Invalid data</div>';
+ 31         else {
+ 32             $content = "=== Ticket N° $ticket_id ===\n";
+ 33             $content .= "Creation Date: $date\n";
+ 34             if ($_SESSION["userid"]) {
+ 35                 $content .= "UserId: " . $_SESSION["userid"] . "\n";
+ 36                 if ($_SESSION["user_prefs"]) $content .= "Preferences: " . $_SESSION["user_prefs"] . "\n";
+ 37             }
+ 38             $content .= "Author: " . $_POST["author"] . "\n";
+ 39             $content .= "Assignee: " . $_POST["assignee"] . "\n";
+ 40             $content .= "Description: " . $_POST["description"] . "\n";
+ 41         }
+ 42 
+ 43         fwrite($fp, $content);
+ 44         fclose($fp);
+ 45 
+ 46         return '
+ 47                 <div class="notification is-success">Ticket with id ' . $ticket_id . ' created</div>
+ 48                 <div class="notification is-info">Your ticket will be treated and removed in a few seconds (estimated time: ~5 seconds)</div>
+ 49             ';
+ 50 
+ 51     }
+ 52 
+ 53 }
+```

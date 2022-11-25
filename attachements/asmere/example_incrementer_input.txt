@@ -1,0 +1,3 @@
+nombre entier_hitchhiker 40
+incrementer entier_hitchhiker 2
+message $entier_hitchhiker
